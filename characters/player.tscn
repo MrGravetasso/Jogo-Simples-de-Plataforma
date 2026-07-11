@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://g8lqdsd1xfl0"]
 
 [ext_resource type="Script" uid="uid://weo6ml42rvq6" path="res://scripts/player.gd" id="1_3eadt"]
+[ext_resource type="Texture2D" uid="uid://dkayq17bk7xwa" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Hurt (32 x 32).png" id="2_evndh"]
 [ext_resource type="Texture2D" uid="uid://brfjjaa5uas0r" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="2_tory2"]
 [ext_resource type="Texture2D" uid="uid://bsrgcpuac5tww" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_x0jl3"]
 [ext_resource type="Texture2D" uid="uid://bflic4mctpb31" path="res://assets/Sprite Pack 2/2 - Mr. Mochi/Running (32 x 32).png" id="4_evndh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uwc6k"]
-size = Vector2(14.421931, 15.569135)
+size = Vector2(14.371828, 14.914148)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mq7si"]
 atlas = ExtResource("2_tory2")
@@ -34,6 +35,14 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v40rj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_evndh")
+}],
+"loop": 1,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_mq7si")
@@ -71,31 +80,60 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v40rj"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evndh"]
+size = Vector2(20.178099, 20.38266)
+
 [node name="player" type="CharacterBody2D" unique_id=96180030]
-collision_mask = 14
+collision_mask = 94
 script = ExtResource("1_3eadt")
 
 [node name="collision" type="CollisionShape2D" parent="." unique_id=718022584]
-position = Vector2(2.682209e-07, -7.010972)
-scale = Vector2(1.1094215, 0.89780563)
+position = Vector2(1.238659e-07, -7.5)
+scale = Vector2(0.83496684, 1.0057564)
 shape = SubResource("RectangleShape2D_uwc6k")
 
-[node name="camera" type="Camera2D" parent="." unique_id=215296384]
-limit_left = 0
-limit_top = 0
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.05
-drag_top_margin = 0.1
-drag_right_margin = 0.05
-drag_bottom_margin = 0.1
-
-[node name="anim" type="AnimatedSprite2D" parent="." unique_id=1948633704]
+[node name="Animation" type="AnimatedSprite2D" parent="." unique_id=1948633704]
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_v40rj")
-animation = &"idle"
+animation = &"hurt"
 autoplay = "idle"
 
-[node name="animator" type="AnimationPlayer" parent="." unique_id=1246056643]
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=1246056643]
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1511473031]
+collision_layer = 32
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1170101096]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_v40rj")
+debug_color = Color(0.99980086, 0, 0.116179295, 0.41960785)
+
+[node name="Remote" type="RemoteTransform2D" parent="." unique_id=1609479064]
+
+[node name="RayRight" type="RayCast2D" parent="." unique_id=14391662]
+position = Vector2(8, -5)
+target_position = Vector2(4, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="RayLeft" type="RayCast2D" parent="." unique_id=1168437686]
+position = Vector2(-8, -5)
+target_position = Vector2(-4, 0)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="HeadCollider" type="Area2D" parent="." unique_id=1751171212]
+collision_mask = 64
+
+[node name="HeadCollision" type="CollisionShape2D" parent="HeadCollider" unique_id=2053883446]
+position = Vector2(2.3655593e-07, -16)
+rotation = -3.1415925
+scale = Vector2(0.4955868, -0.19624524)
+shape = SubResource("RectangleShape2D_evndh")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="HeadCollider" to="." method="_on_head_collider_body_entered"]
