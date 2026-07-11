@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bnai2p3jm3nyb"]
+
+[ext_resource type="Texture2D" uid="uid://bk47pu7orvnar" path="res://assets/Mini FX, Items & UI/ui-buttons/ui_buttons_arrow_up_NORMAL.png" id="1_66g6d"]
+[ext_resource type="Texture2D" uid="uid://bm5yhwn4oaxro" path="res://assets/Mini FX, Items & UI/ui-buttons/ui_buttons_arrow_up_PRESSED.png" id="2_8ed7x"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_svh0i"]
+load_path = "res://.godot/imported/ui_buttons_arrow_left_NORMAL.png-905dfb6e3810cd025627ce47dcacc94e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g21nk"]
+load_path = "res://.godot/imported/ui_buttons_arrow_left_PRESSED.png-b7241a18d61f189283ccddfe3d7fec1c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tsy3q"]
+load_path = "res://.godot/imported/ui_buttons_arrow_right_NORMAL.png-98ac8ca05aa58cca40da55b45cb452cf.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t4o6s"]
+load_path = "res://.godot/imported/ui_buttons_arrow_right_PRESSED.png-6f2da3b32f1179608bbc3b16b5c56c72.ctex"
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=940980302]
+
+[node name="UILeft" type="TouchScreenButton" parent="." unique_id=681207133]
+position = Vector2(23, 217)
+texture_normal = SubResource("CompressedTexture2D_svh0i")
+texture_pressed = SubResource("CompressedTexture2D_g21nk")
+action = "ui_left"
+visibility_mode = 1
+
+[node name="UIRight" type="TouchScreenButton" parent="." unique_id=1151431564]
+position = Vector2(63, 217)
+texture_normal = SubResource("CompressedTexture2D_tsy3q")
+texture_pressed = SubResource("CompressedTexture2D_t4o6s")
+action = "ui_right"
+visibility_mode = 1
+
+[node name="UIJump" type="TouchScreenButton" parent="." unique_id=283414796]
+position = Vector2(425, 217)
+texture_normal = ExtResource("1_66g6d")
+texture_pressed = ExtResource("2_8ed7x")
+action = "ui_accept"
+visibility_mode = 1

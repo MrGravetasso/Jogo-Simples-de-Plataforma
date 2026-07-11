@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://c8mkifo7dwauw"]
+
+[ext_resource type="Script" uid="uid://e4ek8uvsfblr" path="res://scripts/enemy.gd" id="1_p17d1"]
+[ext_resource type="Texture2D" uid="uid://desrgmak1ykmu" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="2_sv682"]
+[ext_resource type="Texture2D" uid="uid://bdnrgoucyfphq" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="3_eq865"]
+[ext_resource type="Texture2D" uid="uid://dipohcti53hst" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="4_ve5as"]
+[ext_resource type="PackedScene" uid="uid://3xt00aa45v16" path="res://prefabs/hitbox.tscn" id="5_aivmq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sdnf1"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_g6cq6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_sv682")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sqlrk"]
+resource_name = "hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_eq865")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5y5al"]
+resource_name = "standing"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ve5as")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0hpir"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_sv682")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("texture:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjngs"]
+_data = {
+&"RESET": SubResource("Animation_g6cq6"),
+&"hurt": SubResource("Animation_sqlrk"),
+&"standing": SubResource("Animation_5y5al"),
+&"walk": SubResource("Animation_0hpir")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwc6k"]
+size = Vector2(19.23075, 2)
+
+[node name="enemy" type="CharacterBody2D" unique_id=2055333054 groups=["enemies"]]
+collision_layer = 4
+collision_mask = 34
+script = ExtResource("1_p17d1")
+
+[node name="texture" type="Sprite2D" parent="." unique_id=497730917]
+position = Vector2(0, -8)
+texture = ExtResource("2_sv682")
+hframes = 2
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=891942016]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_sdnf1")
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=281685752]
+libraries/ = SubResource("AnimationLibrary_fjngs")
+autoplay = &"walk"
+speed_scale = 0.5
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=68648980]
+position = Vector2(0, -7)
+target_position = Vector2(-8, 0)
+collision_mask = 6
+
+[node name="Hitbox" parent="." unique_id=720036991 instance=ExtResource("5_aivmq")]
+position = Vector2(0, -7)
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1043880899]
+position = Vector2(2.5331974e-07, -4)
+scale = Vector2(0.5200006, 1)
+shape = SubResource("RectangleShape2D_uwc6k")
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_anim_animation_finished"]

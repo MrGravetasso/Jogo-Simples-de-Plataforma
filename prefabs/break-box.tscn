@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://vx080nm1inag"]
+
+[ext_resource type="Script" uid="uid://ujeycmeeaohe" path="res://scripts/break_box.gd" id="1_wvpmj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvpmj"]
+size = Vector2(16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vo6kt"]
+load_path = "res://.godot/imported/Blocks (16 x 16).png-cb95a8de78a2a5d2b9a80b3fa3b578cb.ctex"
+
+[sub_resource type="Animation" id="Animation_wvpmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7soej"]
+resource_name = "hit"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.44017926, 0, 0.05897779, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3gui"]
+_data = {
+&"RESET": SubResource("Animation_wvpmj"),
+&"hit": SubResource("Animation_7soej")
+}
+
+[node name="BreakBox" type="CharacterBody2D" unique_id=1462101562]
+collision_layer = 64
+script = ExtResource("1_wvpmj")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1789286827]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_wvpmj")
+
+[node name="Texture" type="Sprite2D" parent="." unique_id=746629687]
+texture = SubResource("CompressedTexture2D_vo6kt")
+centered = false
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
+
+[node name="Animator" type="AnimationPlayer" parent="." unique_id=826437589]
+libraries/ = SubResource("AnimationLibrary_w3gui")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1845907021]
+position = Vector2(8, -1)
